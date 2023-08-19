@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur d'achat{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center bg-danger bg-opacity-10">
+                <div class="card-body">
+                    <h1>Erreur lors de l'achat</h1>
+                    <p>Une erreur s'est produite lors du traitement de votre paiement.</p>
+                    <p>Votre référence de commande est : {{ reference }}</p>
+                    <p>Veuillez réessayer ultérieurement ou contacter notre service client pour plus d'informations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ path('cart_index') }}" class="btn btn-primary">Revenir au panier</a>
+    </div>
+</div>
+
+{% endblock %}

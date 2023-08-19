@@ -1,0 +1,8 @@
+swiftmailer:
+    transport: smtp
+    encryption: ssl
+    auth_mode: login
+    host: mail.toplissage.com
+    port: 465
+    username: contact@toplissage.com
+    password: IOPklmIOLK2!

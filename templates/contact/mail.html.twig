@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block subject %}Nouveau message de contact : {{ messageSubject }}{% endblock %}
+
+{% block body %}
+    <h1>Nouveau message de contact</h1>
+    <p><strong>De :</strong> {{ senderEmail }}</p>
+    <p><strong>Objet :</strong> {{ messageSubject }}</p>
+    <p><strong>Message :</strong></p>
+    <p>{{ messageContent }}</p>
+{% endblock %}
+

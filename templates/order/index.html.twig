@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Hello OrderController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{{ form_start(form, { action: path('order_prepare') }) }}
+
+		<h1 class="text-center">Ma Commande</h1>
+		<br>
+		<br>
+		<div class="col-lg-6">
+			<h5 class=" fs-base fw-normal text-body text-uppercase pb-2 pb-sm-3 ">
+				<span class="text-decoration-underline ms-1">Choisir votre adresse de livraison
+				</span>
+			</h5>
+			<br>
+			{{ form_row(form.addresses)|replace({'[-br]':'<br/>'})|raw}}
+			<br>
+			<br>
+			<h5 class=" fs-base fw-normal text-body text-uppercase pb-2 pb-sm-3 ">
+				<span class="text-decoration-underline ms-1">Choisir votre Transporteur
+				</span>
+			</h5>
+			{{ form_row(form.transporter)|replace({'[-br]':'<br/>'})|raw }}
+		</div>
+
+
+		<div class="mt-4">
+			<h2>Récapitulatif de la commande</h2>
+			{% set total = null %}
+			{% for product in recapCart %}
+				{% set total = total + (product.product.price * product.quantity) %}
+				<div class="row border-top py-4">
+					<div class="col-md-6">
+						<h3>{{ product.product.name }}</h3>
+						<p>Quantité:
+							{{ product.quantity }}</p>
+						<p>Prix du produit:
+							{{ (product.product.price / 100)|number_format(2, ',', '.') }}
+							€</p>
+					</div>
+					<div class="col-md-6">
+						<a class="btn btn-danger" href="{{ path('cart_remove', { id: product.product.id }) }}">Enlever</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="mt-4">
+			<div class="row border-top py-4">
+				<div class="col-md-6">
+					<h2>Total:
+						{{ (total / 100)|number_format(2, ',', '.') }}
+						€</h2>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<button type="submit" class="btn btn-primary">Valider votre commande</button>
+		</div>
+		{{ form_end(form) }}
+
+		<div class="mt-4">
+			<a href="{{ path('cart_removeAll') }}">
+				<button class="btn btn-danger">Supprimer tout</button>
+			</a>
+		</div>
+	</div>
+{% endblock %}

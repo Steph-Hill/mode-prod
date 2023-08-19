@@ -1,0 +1,67 @@
+{# Votre template Twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 card">
+            <h1 class=" text-center pb-3 pt-2">Inscription</h1>
+
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm) }}
+
+                <div class="form-group">
+                    {{ form_label(registrationForm.name) }}
+                    {{ form_widget(registrationForm.name, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(registrationForm.name) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(registrationForm.email) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(registrationForm.postalAdress) }}
+                    {{ form_widget(registrationForm.postalAdress, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(registrationForm.postalAdress) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(registrationForm.siret) }}
+                    {{ form_widget(registrationForm.siret, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(registrationForm.siret) }}
+                </div>
+
+                <div class="form-group d-grid">
+                    
+                    {{ form_label(registrationForm.hairSalon, 'Possédez vous un ou plusieurs Salon de coiffure ?') }}
+                    {{ form_widget(registrationForm.hairSalon) }}
+                    {{ form_errors(registrationForm.hairSalon) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(registrationForm.plainPassword) }}
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'autocomplete': 'new-password'}}) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+
+                <div class="form-group mt-3">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms, 'I agree to the terms') }}
+                    {{ form_errors(registrationForm.agreeTerms) }}
+                </div>
+
+                <button type="submit" class="btn btn-primary float-end m-3">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

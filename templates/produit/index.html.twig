@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!
+{% endblock %}
+
+{% block body %}
+	
+
+		<h1 class=" text-center">Produits</h1>
+
+		</br>
+		{% if is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
+			<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
+        {% for product in pagination %}
+            <div class="col">
+                <div class="card w-200">
+                    <a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-dark">
+                        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid" alt="...">
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p>{{ product.price }}€</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+        {% include "includes/_pagination.html.twig" %}
+    </div>
+</div>
+
+
+		{% else %}
+			<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
+        {% for product in pagination %}
+            <div class="col">
+                <div class="card w-200">
+                    <a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-dark">
+                        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid" alt="...">
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% include "includes/_pagination.html.twig" %}
+    </div>
+</div>
+		{% endif %}
+
+{% endblock %}

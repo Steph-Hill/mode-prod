@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!
+{% endblock %}
+
+{% block body %}
+
+<div class="container rounded-top mt-5 bg-opacity-50 bg-primary" id="zero-pad">
+	{% if cart|length > 0  %}
+
+		{% set total = null %}
+
+
+		<div class="row d-flex justify-content-center ">
+			<div class="col-lg-10 col-12 pt-3">
+
+				<div class="d-flex flex-column pt-4">
+					<div>
+						<h5 class="text-uppercase font-weight-normal">shopping bag</h5>
+					</div>
+					<div class="font-weight-normal">2 items</div>
+				</div>
+
+				
+				{% for item in cart %}
+					{% set total = total + (item.product.price * item.quantity) %}
+					<div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 border-bottom mobile rounded-3 mb-2 bg-opacity-50 bg-white ">
+						<div class="d-flex flex-row align-items-center px-lg-5 m-3">
+							<div ><img class="card rounded-3" src="{{ asset('upload/images/products/' ~ item.product.image) }}" alt="" width="110"></div>
+							<div class="d-flex flex-row justify-content-start px-lg-2 mx-lg-4 mobile" id="heading">
+								<div class="px-lg-2 mr-lg-2">
+									<h6>{{ item.product.name }}</h6>
+								</div>
+								<div class="px-lg-5 mr-lg-5">
+									<b>{{ (item.product.price / 100)|number_format(2,',','.') }}€</b>
+								</div>
+
+								<button class="btn btn-secondary px-3 ms-2" onclick="window.location='{{ path('cart_decrease', { id: item.product.id }) }}'">
+									<i class="fas fa-minus"></i>
+								</button>
+								<span class="px-md-3 px-1">{{ item.quantity }}</span>
+								<button class="btn btn-secondary px-3 ms-2" onclick="window.location='{{ path('cart_add', { id: item.product.id }) }}'">
+									<i class="fa fa-plus" aria-hidden="true"></i>
+								</button>
+
+
+								<div class="px-lg-5 ml-lg-3">
+									<b>$19.98</b>
+
+								</div>
+								<div class="close">
+									<button class="btn btn-secondary px-3 ms-2" onclick="window.location='{{ path('cart_remove', { id: item.product.id }) }}'">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						{# <div class="pl-md-0 pl-2"></div> #}
+
+
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<div class="container bg-light rounded-bottom py-4 bg-primary" id="zero-pad">
+		<div class="row d-flex justify-content-center">
+			<div class="col-lg-10 col-12">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<button class="btn btn-sm bg-light border border-dark">GO BACK</button>
+					</div>
+					<div class="px-md-0 px-1" id="footer-font">
+						<b class="pl-md-4">SUBTOTAL<span class="pl-md-4">$61.78</span>
+						</b>
+					</div>
+					<form action="{{path("order")}}">
+						<div>
+							<button type="submit" class="btn btn-sm bg-dark text-white px-lg-5 px-3">CONTINUE</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+{% else %}
+	<div class="row d-flex justify-content-center">
+		<div class="col-lg-10 col-12 pt-3">
+
+			<div class="d-flex flex-column pt-4">
+				<div>
+					<h5 class="text-uppercase font-weight-normal">shopping bag</h5>
+				</div>
+				{#                 <div class="font-weight-normal">2 items</div>
+																																																							#}
+			</div>
+
+			<div class="d-flex flex-row px-lg-5 mx-lg-5 mobile" id="heading">
+				<div class="px-lg-5 mr-lg-5" id="produc">PRODUCTS</div>
+				<div class="px-lg-5 ml-lg-5" id="prc">PRICE</div>
+				<div class="px-lg-5 ml-lg-1" id="quantity">QUANTITY</div>
+				<div class="px-lg-5 ml-lg-3" id="total">TOTAL</div>
+			</div>
+
+			<div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 border-bottom mobile">
+				<p>Pas d'articles selectionnés</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container bg-light rounded-bottom py-4" id="zero-pad">
+	<div class="row d-flex justify-content-center">
+		<div class="col-lg-10 col-12">
+			<div class="d-flex justify-content-between align-items-center">
+				<div>
+					<button class="btn btn-sm bg-light border border-dark">GO BACK</button>
+				</div>
+				{# <div class="px-md-0 px-1" id="footer-font">
+																																																												<b class="pl-md-4">SUBTOTAL<span class="pl-md-4">$61.78</span></b>
+																																																											</div> #}
+				{# <div>
+																																																												<button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CONTINUE</button>
+																																																											</div> #}
+			</div>
+		</div>
+	</div>
+</div>{% endif %}</div>{% endblock %}

@@ -1,0 +1,51 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-custom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <!-- Header pour les utilisateurs avec le rôle ROLE_ADMIN -->
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{{path('index')}}" class="nav-link active" aria-current="page">Accueil</a></li>
+                <li class="nav-item"><a href="{{ path('admin') }}" class="nav-link">Admin</a></li>
+                
+                <!-- Autres liens spécifiques aux utilisateurs avec le rôle ROLE_ADMIN -->
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <a href="{{ path('admin') }}"><button type="button" class="btn btn-outline-primary me-2">{{ app.user.name }}</button></a>  
+                <a href="{{ path('app_logout') }}"><button type="button" class="btn btn-outline-primary me-2">Deconnexion</button></a>
+                          
+            </div>
+        {% elseif is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
+            <!-- Header pour les utilisateurs avec le rôle ROLE_PROFESSIONAL et 'ROLE_PROFESSIONAL_SALON' -->
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{{ path('index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'index' %}active{% endif %}" aria-current="page">Accueil</a></li>
+                <li class="nav-item"><a href="{{ path('produits') }}" class="nav-link {% if app.request.attributes.get('_route') == 'produits' %}active{% endif %}">Produits</a></li>
+                <li class="nav-item"><a href="{{ path('search') }}" class="nav-link {% if app.request.attributes.get('_route') == 'search' %}active{% endif %}">Salon de Coiffures</a></li>
+                <li class="nav-item"><a href="{{ path('cart_index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'cart_index' %}active{% endif %}">Mon Panier</a></li>
+                <li class="nav-item"><a href="{{ path('app_contact') }}" class="nav-link {% if app.request.attributes.get('_route') == 'app_contact' %}active{% endif %}">Contact</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <a href="{{ path('app_login') }}"><button type="button" class="btn btn-outline-primary me-3">{{ app.user.name }}</button></a>
+                <a href="{{ path('app_logout') }}"><button type="button" class="btn btn-outline-primary me-1">Deconnexion</button></a>
+
+            </div>
+        {% else %}
+         <!-- Header pour les utilisateurs non Connectés -->
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{{ path('index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'index' %}active{% endif %}" aria-current="page">Accueil</a></li>
+                <li class="nav-item"><a href="{{ path('produits') }}" class="nav-link {% if app.request.attributes.get('_route') == 'produits' %}active{% endif %}">Produits</a></li>
+                <li class="nav-item"><a href="{{ path('search') }}" class="nav-link {% if app.request.attributes.get('_route') == 'search' %}active{% endif %}">Salon de Coiffures</a></li>
+                <li class="nav-item"><a href="{{ path('app_contact') }}" class="nav-link {% if app.request.attributes.get('_route') == 'app_contact' %}active{% endif %}">Contact</a></li>
+            </ul>
+            <!-- Header pour les autres utilisateurs -->
+            <div class="col-md-3 text-end">
+                <a href="{{ path('app_login') }}"><button type="button" class="btn btn-outline-primary me-2">Connexion</button></a>
+                <a href="{{ path('app_register') }}"><button type="button" class="btn btn-primary me-3">Inscription</button></a>
+            </div>
+        {% endif %}
+    </header>
+</div>

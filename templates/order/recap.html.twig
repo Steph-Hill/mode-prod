@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérifier la commande
+{% endblock %}
+
+{% block body %}
+
+	{% block content %}
+		<h1 class="text-center">Vérification de votre commande</h1>
+		<br>
+		<br>
+		<h3 class="text-center">Les détails d'expédition</h3>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="card mb-3">
+						<div class="card-body text-center">
+							<h5 class="card-title">{{ transporter.title }}</h5>
+							<p class="card-text">{{ transporter.content }}</p>
+							<p class="card-text">{{ transporter.price|number_format(2, ',', '.') }}€</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="card mb-3">
+						<div class="card-body text-center">
+							<h5 class="card-title">Adresse de livraison</h5>
+							<p class="card-text">{{ delivery|raw }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<h3>Récapitulatif de la commande</h3>
+			<p>{{ recapCart|length }}
+				Produits selectionnés :</p>
+
+			{% set total = null %}
+			<div class="row justify-content-center">
+				{% for product in recapCart %}
+					<div class="col-md-2 ">
+						<div class="card mb-3">
+							<div class="card-body">
+								<h5 class="card-title">{{ product.product.name }}</h5>
+								<p class="card-text">{{ (product.product.price/100)|number_format(2, ',', '.') }}€</p>
+                                <p>{{product.quantity}}</p>
+							</div>
+						</div>
+					</div>
+					{% set total = total + (product.product.price * product.quantity) %}
+				{% endfor %}
+			</div>
+
+
+			<ul class="list-unstyled">
+				<li>Sous Total :
+					<span>{{ (total / 100)|number_format(2, ',', '.') }}€</span>
+				</li>
+				<li>Frais de port :
+					<span>{{ (transporter.price / 100)|number_format(2, ',', '.') }}€</span>
+				</li>
+			</ul>
+
+			<div>
+				Total :
+				<span>{{ (total / 100 + (transporter.price / 100))|number_format(2, ',', '.') }}€</span>
+			</div>
+
+			<form action="{{ path('payment_stripe', { reference: reference }) }}" method="POST">
+				<button type="submit" class="btn btn-lg btn-primary mt-4">Payer par Stripe |
+					{{ (total / 100 + (transporter.price / 100))|number_format(2, ',', '.') }}€</button>
+			</form>
+		</div>
+
+	{% endblock %}
+
+{% endblock %}
