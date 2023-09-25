@@ -53,10 +53,14 @@ class Professional implements UserInterface, PasswordAuthenticatedUserInterface,
     #[ORM\OneToMany(mappedBy: 'professional', targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\OneToMany(mappedBy: 'professional', targetEntity: HairSalon::class)]
+    private Collection $hairSalons;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->hairSalons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,4 +277,36 @@ public function setEmailAuthCode(string $authCode): void
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, HairSalon>
+     */
+    public function getHairSalons(): Collection
+    {
+        return $this->hairSalons;
+    }
+
+    public function addHairSalon(HairSalon $hairSalon): static
+    {
+        if (!$this->hairSalons->contains($hairSalon)) {
+            $this->hairSalons->add($hairSalon);
+            $hairSalon->setProfessional($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHairSalon(HairSalon $hairSalon): static
+    {
+        if ($this->hairSalons->removeElement($hairSalon)) {
+            // set the owning side to null (unless already changed)
+            if ($hairSalon->getProfessional() === $this) {
+                $hairSalon->setProfessional(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }

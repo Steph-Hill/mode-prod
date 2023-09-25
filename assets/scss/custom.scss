@@ -1,6 +1,40 @@
-$primary : #218711;
+$primary : #3aef9e;
 
 
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-Bold.woff') format('woff'),
+         url('../fonts/PlayfairDisplay-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+// Variables de taille de police
+$title-font-size: 24px;
+$sub-title-font-size: 18px;
+$body-font-size: 16px;
+$link-font-size: 14px;
+$small-font-size: 12px;
+
+// Utilisation des variables de taille de police et de la police "Playfair Display"
 
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-size: $title-font-size;
+}
 
+.sub-title {
+  font-family: 'Playfair Display', serif;
+  font-size: $sub-title-font-size;
+}
+
+a {
+  font-family: 'Playfair Display', serif;
+  font-size: $link-font-size;
+}
+
+.small-text {
+  font-family: 'Playfair Display', serif;
+  font-size: $small-font-size;
+}

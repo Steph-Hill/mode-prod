@@ -1,0 +1,16 @@
+.c-item {
+  height: 480px;
+}
+
+.c-img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(0.6);
+}
+
+#carouselSlide {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 120px;
+}/*# sourceMappingURL=carousel.css.map */

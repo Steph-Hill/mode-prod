@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HairSalonController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		.left-column {
+			width: 40%;
+			float: left;
+			padding-right: 20px;
+		}
+		.right-column {
+			width: 60%;
+			float: left;
+		}
+		.clear {
+			clear: both;
+		}
+	</style>
+
+	<div class="container">
+		<div
+			class="row">
+			<!-- Colonne du formulaire -->
+			<div class="col-md-4 left-column">
+				<h1 class="text-center my-3">Ajouter un salon de coiffure oki</h1>
+				<form method="POST" action="{{ path('app_hair_salon') }}">
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					{{ form_end(form) }}
+				</form>
+			</div>
+
+			<!-- Colonne du contenu principal -->
+			<div
+				class="col-md-8 right-column">
+				<!-- Contenu principal de votre page -->
+				<h1 class="text-center ">Liste des salons</h1>
+				<div class="scrollable-div" style="height: 380px; overflow-x: hidden; ">
+
+				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-6 justify-content-center  ">
+					{% for salon in pagination %}
+						<div class="col mb-4">
+							<div class="card p-3">
+								<h4 class="card-title text-bg-primary text-xxl-center">{{ salon.name }}</h4>
+								<p class="card-text">Code Postal:
+									{{ salon.postalAdress }}</p>
+								<p class="card-text">Tel:
+									{{ salon.phone }}</p>
+								<p class="card-text">Nombre employé:
+									{{ salon.employe }}</p>
+								<p class="card-text">Nombre de place:
+									{{ salon.chair }}</p>
+									<div class="d-flex gap-2 justify-content-center">
+								<a href="{{ path('app_hair_salon_edit', {'id': salon.id}) }}" class="btn btn-primary">Modifier</a>
+						<a href="{{ path('app_hair_salon_delete', {'id': salon.id}) }}" class="btn btn-danger">Supprimer</a>
+							</div>
+							</div>
+							
+					
+
+						</div>
+					{% endfor %}
+				</div>
+
+				</div>
+				{# Pagination #}
+
+				 <div class="d-flex justify-content-center
+										 pagination-container">
+					<nav aria-label="...">
+						<ul class="pagination">
+							{% if pagination.currentPageNumber > 1 %}
+								<li class="page-item">
+									<a class="page-link" href="{{ path('app_hair_salon', {'page': pagination.currentPageNumber - 1}) }}" aria-label="Previous">&laquo;</a>
+								</li>
+							{% else %}
+								<li class="page-item disabled">
+									<span class="page-link" aria-hidden="true">&laquo;</span>
+								</li>
+							{% endif %}
+
+							{% for page in 1..pagination.pageCount %}
+								{% if page == pagination.currentPageNumber %}
+									<li class="page-item active" aria-current="page">
+										<span class="page-link">{{ page }}</span>
+									</li>
+								{% else %}
+									<li class="page-item">
+										<a class="page-link" href="{{ path('app_hair_salon', {'page': page}) }}">{{ page }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+
+							{% if pagination.currentPageNumber < pagination.pageCount %}
+								<li class="page-item">
+									<a class="page-link" href="{{ path('app_hair_salon', {'page': pagination.currentPageNumber + 1}) }}" aria-label="Next">&raquo;</a>
+								</li>
+							{% else %}
+								<li class="page-item disabled">
+									<span class="page-link" aria-hidden="true">&raquo;</span>
+								</li>
+							{% endif %}
+						</ul>
+					</nav>
+				</div>
+			</div> 
+
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+{% endblock %}

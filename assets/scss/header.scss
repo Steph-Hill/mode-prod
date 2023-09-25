@@ -1,12 +1,66 @@
+@import "custom.scss";
+
 .nav-pills .nav-item:hover .nav-link {
     
     background-color: $primary;
     color: #dcfc3b;
   }
 
-  .bg-custom {
-    background-color: #f5f9ea; 
-    border-radius: 10px;
-    padding: 30;
-  }
 
+
+
+/* Espacement dans le body  */
+$body-padding: 140px;
+
+
+body {
+  padding-top: $body-padding;
+  font-family: 'Playfair Display', serif;
+  font-size: $body-font-size;
+  background-color: #dcfc3b;
+  /* part footer 1 */
+  min-height: 100vh;        
+  display: flex;
+  flex-direction: column;
+}
+
+
+.container-foot{
+justify-content: center;
+display: flex;
+align-items: center;
+
+/******fOOTER PART2********
+position: fixed;
+bottom: 0;
+width: 100%; 
+**************************/
+margin-top: auto; /* part footer 1 */
+}
+
+/* Navbar */
+
+@media (max-width:991px) {
+  .sidebar{
+
+    background-color: rgba(37, 188, 107, 0.15);
+    backdrop-filter: blur(10px);
+    border-bottom-width: 10px;
+    border-bottom-style: solid; /* Spécifie le style de bordure */
+  border-bottom-color: aliceblue;
+  }
+  
+}
+
+/* Comportement navbar */
+body.home-content-touch .custom-navbar {
+  
+  transition: background-color 0.3s ease-in-out; /* Ajoutez une transition pour une animation en douceur */
+}
+
+/* Lorsque la zone de l'accueil touche la navbar */
+.home-content-touch .custom-navbar {
+  background-color: $primary
+   /* Changez la couleur de fond de la navbar */
+  /* Autres styles que vous souhaitez appliquer lorsque la zone de l'accueil touche la navbar */
+}

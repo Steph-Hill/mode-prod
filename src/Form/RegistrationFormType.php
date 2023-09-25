@@ -6,6 +6,9 @@ use App\Entity\Professional;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -19,27 +22,58 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Email',
+                'constraints' => [
+                    new Email(),
+                    new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.'])
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('name', null, [
-                'label' => 'Name',
+                'label' => 'Nom/Prénom',
+                'constraints' => [
+                    new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.']),
+                    new Length([
+                        'min' => 10,
+                        'max' => 100,
+                        'minMessage' => 'Le Nom/Prénom doit contenir au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Le Nom/Prénom ne peut pas dépasser {{ limit }} caractères.'
+                    ])
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('postalAdress', null, [
-                'label' => 'Postal Address',
+                'label' => 'Addresse Postal',
+                'constraints' => [
+                    new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.']),
+                    new Length([
+                        'min' => 10,
+                        'max' => 250,
+                        'minMessage' => `L'addresse Postal doit contenir au moins {{ limit }} caractères.`,
+                        'maxMessage' => `L'addresse Postal ne peut pas dépasser {{ limit }} caractères.`
+                    ])
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('siret', null, [
                 'label' => 'Siret',
+                'constraints' => [
+                    new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.'])
+                    
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -76,15 +110,19 @@ class RegistrationFormType extends AbstractType
                     'autocomplete' => 'new-password',
                 ],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
+                    new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 4096,
+                        'min' => 8,
+                        'max' => 20,
+                        'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&]+$/',
+                        'message' => 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.'
                     ]),
                 ],
+                
             ]);
             
     

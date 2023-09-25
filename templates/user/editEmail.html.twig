@@ -1,0 +1,10 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire d'inscription{% endblock %}
+
+{% block body %}
+{{ form_start(emailConfirmationForm) }}
+{{ form_widget(emailConfirmationForm.confirmEmail) }}
+{{ form_end(emailConfirmationForm) }}
+{% endblock %}

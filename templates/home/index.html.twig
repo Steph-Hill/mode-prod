@@ -1,8 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<h1 class=" text-center">Accueil</h1>
-{% include "includes/_carousel.html.twig" %}
+	<div class="d-flex justify-content-center py-2 ">
+		<h1 class=" text-center ">Accueil
+		</h1>
+		<a href="{{path('search')}}">
+
+
+			<button type="button" class="btn btn-outline-primary px-4 mx-4">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-engines-fill" viewbox="0 0 16 16">
+					<path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0Z"/>
+				</svg>
+				<span class="visually-hidden">Button</span>
+			</button>
+
+		</a>
+	</div>
+
+	{% include "includes/_carousel.html.twig" %}
+	<div class="d-flex mb-5">
+
+		<div class="container d-flex ">
+			<div class="bg-danger rounded-lg d-flex m-1 p-5 ">
+				<p class=" d-flex justify-content-center ">
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt ullam autem dolores quibusdam magni. Quae aliquam, magni fugiat earum ullam repudiandae itaque fuga dolor illo voluptates nesciunt provident libero at.lo Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum sunt cum rerum! Quibusdam, magni. Itaque voluptatibus, ad, tenetur, neque eius incidunt iusto consequuntur odio assumenda molestiae nisi. 
+													Quos, fugiat reiciendis?
+				</p>
+			</div>
+		</div>
+
+		<div class="container d-flex ">
+			<div class="bg-danger d-flex justify-content-center m-1">
+				<p>
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt ullam autem dolores quibusdam magni. Quae aliquam, magni fugiat earum ullam repudiandae itaque fuga dolor illo voluptates nesciunt provident libero at.lo Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum sunt cum rerum! Quibusdam, magni. Itaque voluptatibus, ad, tenetur, neque eius incidunt iusto consequuntur odio assumenda molestiae nisi. Quos, fugiat reiciendis?
+				</p>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

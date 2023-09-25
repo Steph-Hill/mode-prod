@@ -6,8 +6,8 @@ scheb_two_factor:
         digits: 6
         mailer: App\Mailer\MyAuthCodeMailer
         enabled: true
-        sender_email: no-reply@test.com
-        sender_name: John Doe
+        sender_email: contact@toplissage.com
+        sender_name: TopLissage
         template: security/2fa_form.html.twig      # Template utilisé pour afficher le formulaire d'authentification
 
     trusted_device:

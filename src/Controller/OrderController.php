@@ -24,7 +24,7 @@ class OrderController extends AbstractController
     }
  
     // Route pour afficher le formulaire de création de commande
-    #[Route('/order/create', name: 'order')]
+    #[Route('/order/create', name: 'order_now')]
     public function index(CartService $cartService): Response
     {
         // Vérifie si l'utilisateur est connecté

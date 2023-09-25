@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../fonts/PlayfairDisplay-Bold.woff") format("woff"), url("../fonts/PlayfairDisplay-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+body {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+}
+
+.sub-title {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+}
+
+a {
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+}
+
+.small-text {
+  font-family: "Playfair Display", serif;
+  font-size: 12px;
+}
+
+.nav-pills .nav-item:hover .nav-link {
+  background-color: #3aef9e;
+  color: #dcfc3b;
+}
+
+/* Espacement dans le body  */
+body {
+  padding-top: 140px;
+}
+
+/* Navbar */
+@media (max-width: 991px) {
+  .sidebar {
+    background-color: rgba(37, 188, 107, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    border-bottom-width: 10px;
+    border-bottom-style: solid; /* Spécifie le style de bordure */
+    border-bottom-color: aliceblue;
+  }
+}
+/* Comportement navbar */
+body.home-content-touch .custom-navbar {
+  transition: background-color 0.3s ease-in-out; /* Ajoutez une transition pour une animation en douceur */
+}
+
+/* Lorsque la zone de l'accueil touche la navbar */
+.home-content-touch .custom-navbar {
+  background-color: rgba(255, 255, 255, 0.9); /* Changez la couleur de fond de la navbar */
+  /* Autres styles que vous souhaitez appliquer lorsque la zone de l'accueil touche la navbar */
+}/*# sourceMappingURL=header.css.map */

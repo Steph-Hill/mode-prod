@@ -15,7 +15,7 @@
 						<div class="card-body text-center">
 							<h5 class="card-title">Veuillez valider votre code recu par mail</h5>
 							<form action="/2fa_check" method="post">
-								<input type="hidden" name="_token" value="{{ csrf_token('2fa') }}">
+    							<input type="hidden" name="_token" value="{{ csrf_token('2fa') }}">
 
 								<div class="mb-3 d-flex align-items-center">
 									<label for="_auth_code" class="form-label">Code d'accés:</label>

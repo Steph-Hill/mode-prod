@@ -22,7 +22,7 @@ class MyAuthCodeMailer implements AuthCodeMailerInterface
 
         // Créer une instance de l'e-mail à envoyer
         $email = (new TemplatedEmail())
-            ->from('no-reply@example.com')
+            ->from('contacto@toplissage.com')
             ->to($user->getEmailAuthRecipient())
             ->subject('Code d\'authentification')
             ->htmlTemplate('security/2fa_code_email.html.twig')

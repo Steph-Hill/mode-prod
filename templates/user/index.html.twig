@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire d'inscription
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="mt-4 text-center">Profil
+		</h1>
+
+		<div class="d-flex align-items-center justify-content-center">
+			<div class="flex-column mt-4 p-4 w-50 ">
+				<div class="">
+					<h2>
+						Nom / Prénom :
+						{{ professional.name }}
+					</h2>
+				</div>
+				<div class="">
+					<h2>
+						Adresse Postal :
+						{{ professional.postalAdress }}
+					</h2>
+				</div>
+				<div class="">
+					<h2>
+						Siret :
+						{{ professional.siret }}
+					</h2>
+				</div>
+
+
+			</div>
+			<div class="mt-4 ">
+				<a href="{{ path('user_edit', {'id': professional.id}) }}" class="btn btn-primary">Modifier</a>
+			</div>
+
+		</div>
+
+		<div class="d-flex align-items-center justify-content-center ">
+
+			<div class="flex-column mt-4 p-4 w-50 ">
+				<div class="">
+					<h2>Email :
+						{{ professional.email }}
+					</h2>
+				</div>
+
+			</div>
+			<div class="mt-4 ">
+				<a href="{{ path('user_email', {'id': professional.id}) }}" class="btn btn-primary">Modifier</a>
+			</div>
+		</div>
+
+		<div class="d-flex align-items-center justify-content-center ">
+
+			<div class="flex-column mt-4 p-4 w-50 ">
+				<div>
+					<h2>
+						Mot de Passe :
+						{% for _ in range(15, professional.password|length) %}¤
+						{% endfor %}
+					</h2>
+				</div>
+			</div>
+			<div class="mt-4 ">
+				<a href="{{ path('user_pass', {'id': professional.id}) }}" class="btn btn-primary">Modifier</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

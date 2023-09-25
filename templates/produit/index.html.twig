@@ -11,12 +11,12 @@
 		</br>
 		{% if is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
 			<div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center py-5 ">
         {% for product in pagination %}
             <div class="col">
-                <div class="card w-200">
+                <div class="card w-200 my-3">
                     <a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-dark">
-                        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid" alt="...">
+                        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid product-img" alt="...">
                     </a>
 
                     <div class="card-body">

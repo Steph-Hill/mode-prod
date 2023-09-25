@@ -1,0 +1,116 @@
+<nav class="navbar navbar-expand-lg navbar-white fixed-top custom-navbar">
+	<div class="container">
+		<a class="navbar-brand fs-4 me-5 pe-5" href="#">
+		
+			Top Lissage 
+		</a>
+		
+		<button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		{# Sidebar #}
+		<div
+			class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+			{# Sidebar Header #}
+			<div class="offcanvas-header text-white border-bottom">
+				<h5 class="offcanvas-title" id="offcanvasNavbarLabel">TopLissage</h5>
+				<button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			{% if is_granted('ROLE_ADMIN') %}
+
+				{# Sidebar Body#}
+				<div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+					<ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3 fs-5">
+						<li class="nav-item mx-2">
+							<a href="{{ path('index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'index' %}active{% endif %}" aria-current="page">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('admin') }}" class="nav-link">Admin</a>
+						</li>
+
+						<li class="nav-item mx-2 color-white">
+							<a href="{{ path('produits') }}" class="btn btn-danger nav-link {% if app.request.attributes.get('_route') == 'produits' %}active{% endif %}">Produits</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a href="{{ path('search') }}" class="nav-link {% if app.request.attributes.get('_route') == 'search' %}active{% endif %}">Salon de Coiffures</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a href="{{ path('app_contact') }}" class="nav-link {% if app.request.attributes.get('_route') == 'app_contact' %}active{% endif %}">Contact</a>
+						</li>
+					</ul>
+					{# Connexion - Inscription #}
+					<div class="d-flex justify-content-center align-items-center gap-2 p-3">
+						<a href="{{ path('user_profil') }}">
+							<button type="button" class="btn btn-primary me-1">{{ app.user.name }}</button>
+						</a>
+						<a href="{{ path('app_logout') }}">
+							<button type="button" class="btn btn-primary ">Deconnexion</button>
+						</a>
+
+					</div>
+				</div>
+			{% elseif is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
+
+				{# Sidebar Body#}
+				<div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+					<ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3 fs-5">
+						<li class="nav-item mx-2">
+							<a href="{{ path('index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'index' %}active{% endif %}" aria-current="page">Accueil</a>
+						</li>
+						<li class="nav-item mx-2 color-white">
+							<a href="{{ path('produits') }}" class="nav-link {% if app.request.attributes.get('_route') == 'produits' %}active{% endif %}">Produits</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a href="{{ path('app_hair_salon') }}" class="nav-link {% if app.request.attributes.get('_route') == 'search' %}active{% endif %}">Salon de Coiffures</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('cart_index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'cart_index' %}active{% endif %}">Mon Panier</a>
+						</li>
+
+						<li class="nav-item mx-2">
+							<a href="{{ path('app_contact') }}" class="nav-link {% if app.request.attributes.get('_route') == 'app_contact' %}active{% endif %}">Contact</a>
+						</li>
+					</ul>
+					{# Connexion - Inscription #}
+					<div class="d-flex justify-content-center align-items-center gap-3 p-4">
+						<a href="{{ path('user_profil') }}">
+							<button type="button" class="btn btn-primary me-1">{{ app.user.name }}</button>
+						</a>
+						<a href="{{ path('app_logout') }}">
+							<button type="button" class="btn btn-primary ">Deconnexion</button>
+						</a>
+
+					</div>
+				</div>
+			{% else %}
+
+				<!-- Nav pour les utilisateurs non Connectés -->
+				{# Sidebar Body#}
+					<div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0"> <ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3 fs-5">
+						<li class="nav-item mx-2">
+							<a href="{{ path('index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'index' %}active{% endif %}" aria-current="page">Accueil</a>
+						</li>
+						<li class="nav-item mx-2 color-white">
+							<a href="{{ path('produits') }}" class="nav-link {% if app.request.attributes.get('_route') == 'produits' %}active{% endif %}">Produits</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a href="{{ path('search') }}" class="nav-link {% if app.request.attributes.get('_route') == 'search' %}active{% endif %}">Salon de Coiffures</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a href="{{ path('app_contact') }}" class="nav-link {% if app.request.attributes.get('_route') == 'app_contact' %}active{% endif %}">Contact</a>
+						</li>
+					</ul>
+					{# Connexion - Inscription #}
+					<div class="d-flex justify-content-center align-items-center gap-3 p-4">
+						<a href="{{ path('app_login') }}">
+							<button type="button" class="btn btn-primary me-1">Connexion</button>
+						</a>
+						<a href="{{ path('app_register') }}">
+							<button type="button" class="btn btn-primary ">Inscription</button>
+						</a>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</nav>
