@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulaire d'inscription{% endblock %}
+{% block title %}Formulaire d'inscription
+{% endblock %}
 
 {% block body %}
-<div class="container">
-<h1 class="mt-4">Formulaire De Modification des informations utilisateur</h1>
-   
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-</div>
+	<div class="container col-lg-3 space-top">
+		<div class="bg-secondary p-4 bg-opacity-70 rounded-4">
+			<h1 class="mt-4 text-center">Formulaire De Modification des informations utilisateur</h1>
+
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			{{ form_end(form) }}
+		</div>
+
+	</div>
 {% endblock %}

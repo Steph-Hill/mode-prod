@@ -5,61 +5,101 @@
 
 {% block body %}
 
-<div class="container rounded-top mt-5 bg-opacity-50 bg-primary" id="zero-pad">
+<div class="container rounded-top mt-5 bg-opacity-50 bg-primary pt-5" id="zero-pad">
 	{% if cart|length > 0  %}
 
 		{% set total = null %}
+		{% set totalItems = null %}
 
 
-		<div class="row d-flex justify-content-center ">
-			<div class="col-lg-10 col-12 pt-3">
-
-				<div class="d-flex flex-column pt-4">
-					<div>
-						<h5 class="text-uppercase font-weight-normal">shopping bag</h5>
-					</div>
-					<div class="font-weight-normal">2 items</div>
+		<div
+			class="row d-flex justify-content-center ">
+			{# position panier et carte de mes articles #}
+			<div class="col-lg-12 pt-5 px-5">
+				<div class="d-flex flex-column pb-2 align-items-start">
+					<h5 class="text-uppercase font-weight-normal">MON PANIER</h5>
 				</div>
 
-				
+
 				{% for item in cart %}
-					{% set total = total + (item.product.price * item.quantity) %}
-					<div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 border-bottom mobile rounded-3 mb-2 bg-opacity-50 bg-white ">
-						<div class="d-flex flex-row align-items-center px-lg-5 m-3">
-							<div ><img class="card rounded-3" src="{{ asset('upload/images/products/' ~ item.product.image) }}" alt="" width="110"></div>
-							<div class="d-flex flex-row justify-content-start px-lg-2 mx-lg-4 mobile" id="heading">
-								<div class="px-lg-2 mr-lg-2">
-									<h6>{{ item.product.name }}</h6>
-								</div>
-								<div class="px-lg-5 mr-lg-5">
-									<b>{{ (item.product.price / 100)|number_format(2,',','.') }}€</b>
-								</div>
+					{% set totalItem = item.product.price * item.quantity %}
+					{% set total = total + totalItem %}
+					<div class=" pt-2  border-bottom mobile rounded-3 mb-2 bg-opacity-50 bg-white ">
 
-								<button class="btn btn-secondary px-3 ms-2" onclick="window.location='{{ path('cart_decrease', { id: item.product.id }) }}'">
-									<i class="fas fa-minus"></i>
-								</button>
-								<span class="px-md-3 px-1">{{ item.quantity }}</span>
-								<button class="btn btn-secondary px-3 ms-2" onclick="window.location='{{ path('cart_add', { id: item.product.id }) }}'">
-									<i class="fa fa-plus" aria-hidden="true"></i>
-								</button>
+						<div class="d-flex justify-content-between  my-4 px-1 ">
 
+							<div class="image-cart d-flex">
 
-								<div class="px-lg-5 ml-lg-3">
-									<b>$19.98</b>
+								<img class="card rounded-4 mx-4 px-" src="{{ asset('upload/images/products/' ~ item.product.image) }}" alt="" width="250">
 
-								</div>
-								<div class="close">
-									<button class="btn btn-secondary px-3 ms-2" onclick="window.location='{{ path('cart_remove', { id: item.product.id }) }}'">
-										<i class="fas fa-times"></i>
-									</button>
-								</div>
 							</div>
+
+							<div class="d-flex row justify-content-center ms-4 ">
+
+								<p class=" fs-3 px-5 text-center col-9 border-bottom border-primary border-3">{{ item.product.name }}</p>
+
+								<div id="prix" class=" pt-2 px-lg-5 mr-lg-5 d-flex justify-content-around bg-success bg-opacity-50 col-6 rounded-3 align-items-center">
+
+									<p class="mb-3 fs-5 ">Prix</p>
+									<p class="px-2 pr-2">:</p>
+									<p class="mb-4 fs-3 ">{{ (item.product.price / 100)|number_format(2,',','.') }}€</p>
+								</div>
+
+								<div class="d-flex justify-content-center align-items-center mt-4 bg-opacity-50 bg-white pt-2 col-9">
+									<a href="{{ path('cart_decrease', { id: item.product.id }) }}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-dash-square-fill pb-2" viewbox="0 0 16 16">
+											<path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1"/>
+										</svg>
+									</a>
+									<span class="px-md-3 fs-3 pb-2">{{ item.quantity }}</span>
+									<a href="{{ path('cart_add', { id: item.product.id }) }}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-square-fill pb-2" viewbox="0 0 16 16">
+											<path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+										</svg>
+									</a>
+								</div>
+
+							</div>
+
+							<div class=" d-flex row px-lg-2">
+								<div class="close d-flex justify-content-end px-4">
+
+									<button type="button" class="btn btn-danger  " onclick="window.location='{{ path('cart_remove', { id: item.product.id }) }}'">
+										<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+											<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+											<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+										</svg>
+										Supprimé
+									</button>
+
+								</div>
+
+
+								<div id="total" class="d-flex justify-content-center px-lg-3 mt-5" style="margin-right: 2rem;">
+
+
+									<span class="d-flex align-items-center border-bottom border-primary border-3">TOTAL :
+									</span>
+
+								</div>
+								<div id="total" class="d-flex justify-content-center px-lg-3 mt-1" style="margin-right: 2rem;">
+
+
+									<span class="d-flex align-items-center fs-1 pb-3 bg-success bg-opacity-50 px-3 rounded-3 ">{{ (totalItem / 100)|number_format(2, ',', '.') }}
+										€</span>
+
+								</div>
+
+							</div>
+
+
 						</div>
-						{# <div class="pl-md-0 pl-2"></div> #}
 
 
 					</div>
+
 				{% endfor %}
+
 			</div>
 		</div>
 	</div>
@@ -91,17 +131,10 @@
 
 			<div class="d-flex flex-column pt-4">
 				<div>
-					<h5 class="text-uppercase font-weight-normal">shopping bag</h5>
+					<h5 class="text-uppercase font-weight-normal">Mon Panier</h5>
 				</div>
-				{#                 <div class="font-weight-normal">2 items</div>
-																																																							#}
-			</div>
+				<div class="font-weight-normal">2 items</div>
 
-			<div class="d-flex flex-row px-lg-5 mx-lg-5 mobile" id="heading">
-				<div class="px-lg-5 mr-lg-5" id="produc">PRODUCTS</div>
-				<div class="px-lg-5 ml-lg-5" id="prc">PRICE</div>
-				<div class="px-lg-5 ml-lg-1" id="quantity">QUANTITY</div>
-				<div class="px-lg-5 ml-lg-3" id="total">TOTAL</div>
 			</div>
 
 			<div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 border-bottom mobile">
@@ -116,15 +149,14 @@
 		<div class="col-lg-10 col-12">
 			<div class="d-flex justify-content-between align-items-center">
 				<div>
-					<button class="btn btn-sm bg-light border border-dark">GO BACK</button>
+					<a href="{{ path('produits') }}">
+						<button class="btn btn-sm bg-light border border-dark">GO BACK</button>
+					</a>
 				</div>
-				{# <div class="px-md-0 px-1" id="footer-font">
-																																																												<b class="pl-md-4">SUBTOTAL<span class="pl-md-4">$61.78</span></b>
-																																																											</div> #}
-				{# <div>
-																																																												<button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CONTINUE</button>
-																																																											</div> #}
+
+				<button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CONTINUE</button>
 			</div>
+
 		</div>
 	</div>
-</div>{% endif %}</div>{% endblock %}
+</div></div>{% endif %}</div>{% endblock %}

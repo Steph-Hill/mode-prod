@@ -1,29 +1,102 @@
-.c-item{
-    height: 480px;
-    
+
+/* carousel accueil */
+.c-item-home{
+    height: 700px;
+
   }
 
 .c-img{
   height: 100%;
   object-fit: cover;
   filter: brightness(0.6);
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
-#carouselSlide {
-  width: 60rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 120px;
+#carousel-home {
+  width: 100%;
+  
 }
 
-/* ******
+/* carousel produits1 */
+
+.carousel-produit1{
+  height: 900px;
+}
+
+.carousel-produit1-img{
+  height: 50%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  border-radius: 5px;
+
+}
+
+#carousel-produits1{
+
+  width: 300px;
+
+}
+
+/* carousel2 */
+.carousel-produit2{
+  height: 900px;
+}
+
+.carousel-produit2-img{
+  height: 50%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  border-radius: 5px;
+
+}
+
+#carousel-produits2{
+
+  width: 300px;
+
+}
+
+.bande-carousel{
+
+  background-color: $secondary;
+  height: 500px;
+  padding-top: 20px;
+}
+
+/* **********************
+professionals avant apres
+*********************/
+
+/* carousel2 */
+
+#carousel-professional{
+
+  width: 500px;
+
+}
+
+.blonds-carousel{
+  height: 500px;
+}
+
+.carousel-blond-img{
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  border-radius: 5px;
+
+}
+
+
+
+
+/* ********
 product style
 **********/
 
 .product-img{
 
-  height: 300px;
+  height: 200px;
   object-fit: cover;
 
 }

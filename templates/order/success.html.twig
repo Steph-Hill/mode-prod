@@ -3,10 +3,10 @@
 {% block title %}Succès d'achat{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container space-top">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card text-center bg-primary bg-opacity-10">
+            <div class="card text-center bg-success ">
                 <div class="card-body">
                     <h3>Votre achat a été effectué avec succès !</h3>
                     <p>Merci d'avoir effectué votre achat.</p>
@@ -16,8 +16,8 @@
         </div>
     </div>
 
-    <div class="text-center mt-4">
-        <a href="{{ path('cart_index') }}" class="btn btn-primary">Revenir au panier</a>
+    <div class="text-center mt-4 ">
+        <a href="{{ path('cart_index') }}" class="btn btn-secondary">Revenir au panier</a>
     </div>
 </div>
 

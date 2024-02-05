@@ -1,57 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détails du produit{% endblock %}
+{% block title %}Détails du produit
+{% endblock %}
 
 {% block body %}
-<div class="container">
-		{% if is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
 
-    <h1 class="text-center m-6">{{ product.name }}</h1>
-    <div class="row align-items-center mt-6">
-        <div class="col-md-6 mb-2 d-flex justify-content-center">
-    <div class="card">
-        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid w-75 h-100 mx-auto" alt="...">
-    </div>
-</div>
-        <div class="col-md-6 card">
-            <div class="mb-3">
-                <div>
-                    <p><strong>Description :</strong>{{ product.description|striptags }}</p>
-                </div>
-                
-                <p><strong>Quantité :</strong> {{ product.quantity }}</p>
-                <p><strong>Prix :</strong> {{ product.price }}</p>
-            </div>
-           
-        </div>
-    </div>
-   
-    <div class="mt-4">
-        <a href="{{ path("produits") }}"><button class="btn btn-primary" type="button">Autres Produits</button></a>
-        <a href="{{ path('cart_add', { 'id': product.id }) }}"><button class="btn btn-primary" type="button">Ajouter au Panier</button></a>
-    </div>
-    {% else %}
-    <h1 class="text-center m-6">{{ product.name }}</h1>
-    <div class="row align-items-center mt-6">
-        <div class="col-md-6 mb-2 d-flex justify-content-center">
-    <div class="card">
-        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid w-75 h-100 mx-auto" alt="...">
-    </div>
-</div>
-        <div class="col-md-6 card">
-            <div class="mb-3">
-                <div>
-                    <p><strong>Description :</strong>{{ product.description|striptags }}</p>
-                </div>
-                
-            </div>
-           
-        </div>
-    </div>
-   
-    <div class="mt-4">
-        <a href="{{ path("produits") }}"><button class="btn btn-primary" type="button">Autres Produits</button></a>
-    </div>
-        {% endif %}
-</div>
+	{% if is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
+		<div class="container space-top">
+			<h1 class="text-center text-secondary mb-5">{{ product.name }}</h1>
+
+			<div class="d-flex flex-column">
+
+				<div class="d-flex flex-column ">
+
+					<!-- Image col -->
+					<div class=" d-flex mb-5">
+						<img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid w-50 h-50 rounded-5 mx-auto" alt="...">
+					</div>
+
+
+					<div class=" w-auto bg-light rounded-4">
+						<div class=" d-flex mt-3 ">
+
+							<div class="d-flex mb-3 mx-4">
+								<h2>Quantité :</h2>
+								<p class="mx-3">{{ product.quantity }}</p>
+							</div>
+
+							<div class="d-flex ">
+                            
+								<h2>Prix :</h2>
+								<p class=" mx-3">{{ (product.price /100)|number_format(2,',','.') }} € </p>
+
+							</div>
+
+						</div>
+						<div class="mb-3 p-4">
+							<h1>Description :</h1>
+							<p>{{ product.description|striptags }}</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Description col -->
+
+
+			</div>
+		</div>
+
+		<div class="m-4">
+			<a href="{{ path("produits") }}">
+				<button class="btn btn-secondary m-4" type="button">Autres Produits</button>
+			</a>
+			<a href="{{ path('cart_add', { 'id': product.id }) }}">
+				<button class="btn btn-secondary" type="button">Ajouter au Panier</button>
+			</a>
+		</div>
+	{% else %}
+		<div class="container space-top">
+			<h1 class="text-center text-secondary mb-5">{{ product.name }}</h1>
+
+			<div
+				class="d-flex flex-column">
+				<!-- Image col -->
+				<div class=" mb-2 d-flex justify-content-center">
+					<img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid w-50 h-50 mx-auto" alt="...">
+				</div>
+
+				<!-- Description col -->
+				<div class=" w-auto card">
+					<div class="mb-3 ">
+						<h1>Description :</h1>
+						<p>{{ product.description|striptags }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="mt-4 ">
+			<a href="{{ path("produits") }}">
+				<button class="btn btn-secondary" type="button">Autres Produits</button>
+			</a>
+		</div>
+	{% endif %}
+
 {% endblock %}

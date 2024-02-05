@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SearchController!
-{% endblock %}
+{% block title %}Hello SearchController!{% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container space-top">
 		<div class="row justify-content-center">
 			<div class="col-lg-6">
 				{% if form.vars.submitted and form.vars.valid %}
@@ -29,22 +28,26 @@
 					</div>
 
 					<div class="container mt-5">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-6 justify-content-center">
-        {% for salon in hairSalon %}
-            <div class="col mb-4">
-                <div class="card p-3">
-                    <h4 class="card-title text-bg-primary text-xxl-center">{{ salon.name }}</h4>
-                    <p class="card-text">Code Postal: {{ salon.postalAdress }}</p>
-                    <p class="card-text">Tel: {{ salon.phone }}</p>
-                    <p class="card-text">Nombre employé: {{ salon.employe }}</p>
-                    <p class="card-text">Nombre de place: {{ salon.chair }}</p>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-</div>
+						<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-6 justify-content-center">
+							{% for salon in hairSalon %}
+								<div class="col mb-4">
+									<div class="card p-3">
+										<h4 class="card-title text-bg-primary text-xxl-center">{{ salon.name }}</h4>
+										<p class="card-text">Code Postal:
+											{{ salon.postalAdress }}</p>
+										<p class="card-text">Tel:
+											{{ salon.phone }}</p>
+										<p class="card-text">Nombre employé:
+											{{ salon.employe }}</p>
+										<p class="card-text">Nombre de place:
+											{{ salon.chair }}</p>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
 
-   				{% else %}
+				{% else %}
 					<div class="d-flex justify-content-center">
 						<div class="flex-grow-3 card col-md-8 justify-content-center">
 							{{ form_start(form) }}

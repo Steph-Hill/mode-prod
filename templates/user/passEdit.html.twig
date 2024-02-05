@@ -4,9 +4,15 @@
 {% block title %}Formulaire d'inscription{% endblock %}
 
 {% block body %}
-{{ form_start(resetForm) }}
-{{ form_widget(resetForm.password) }}
-<button class="btn btn-secondary">Reset password</button>
 
-{{ form_end(resetForm) }}
+<div class="space-top">
+
+    {{ form_start(resetForm) }}
+    {{ form_widget(resetForm.password) }}
+    <button class="btn btn-secondary">Reset password</button>
+
+    {{ form_end(resetForm) }}
+
+</div>
+
 {% endblock %}

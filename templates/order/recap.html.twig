@@ -6,11 +6,12 @@
 {% block body %}
 
 	{% block content %}
-		<h1 class="text-center">Vérification de votre commande</h1>
-		<br>
-		<br>
-		<h3 class="text-center">Les détails d'expédition</h3>
-		<div class="container">
+
+		<div class="container space-top text-light">
+			<h1 class="text-center">Vérification de votre commande</h1>
+			<br>
+			<br>
+			<h3 class="text-center">Les détails d'expédition</h3>
 			<div class="row justify-content-center">
 				<div class="col-md-6">
 					<div class="card mb-3">
@@ -35,7 +36,7 @@
 			</div>
 		</div>
 
-		<div class="text-center">
+		<div class="text-center text-light">
 			<h3>Récapitulatif de la commande</h3>
 			<p>{{ recapCart|length }}
 				Produits selectionnés :</p>
@@ -48,7 +49,7 @@
 							<div class="card-body">
 								<h5 class="card-title">{{ product.product.name }}</h5>
 								<p class="card-text">{{ (product.product.price/100)|number_format(2, ',', '.') }}€</p>
-                                <p>{{product.quantity}}</p>
+								<p>{{product.quantity}}</p>
 							</div>
 						</div>
 					</div>
@@ -72,7 +73,7 @@
 			</div>
 
 			<form action="{{ path('payment_stripe', { reference: reference }) }}" method="POST">
-				<button type="submit" class="btn btn-lg btn-primary mt-4">Payer par Stripe |
+				<button type="submit" class="btn btn-lg btn-secondary m-4">Payer par Stripe |
 					{{ (total / 100 + (transporter.price / 100))|number_format(2, ',', '.') }}€</button>
 			</form>
 		</div>

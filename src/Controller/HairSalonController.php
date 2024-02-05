@@ -17,9 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HairSalonController extends AbstractController
 {
 
-
-
-    /*  #[IsGranted("ROLE_PROFESSIONAL_SALON")] */
     #[Route('/ajout_salon', name: 'app_hair_salon', methods: ['GET', 'POST'])]
     public function createSalon(
         Request $request,

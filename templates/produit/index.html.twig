@@ -4,59 +4,59 @@
 {% endblock %}
 
 {% block body %}
-	
-
-		<h1 class=" text-center">Produits</h1>
-
-		</br>
-		{% if is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
-			<div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center py-5 ">
-        {% for product in pagination %}
-            <div class="col">
-                <div class="card w-200 my-3">
-                    <a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-dark">
-                        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid product-img" alt="...">
-                    </a>
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p>{{ product.price }}€</p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-
-    <div class="d-flex justify-content-center mt-5">
-        {% include "includes/_pagination.html.twig" %}
-    </div>
-</div>
 
 
-		{% else %}
-			<div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
-        {% for product in pagination %}
-            <div class="col">
-                <div class="card w-200">
-                    <a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-dark">
-                        <img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid" alt="...">
-                    </a>
+	<h1 class=" text-center">Produits</h1>
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+</br>
+{% if is_granted('ROLE_PROFESSIONAL') or is_granted('ROLE_PROFESSIONAL_SALON') %}
+	<div class="container pt-5">
+		<h1 class="text-center pb-3">Mes Produits</h1>
+		{# cards produits responsives #}
+		<div class="row row-cols-xl-4 row-cols-md-2 row-cols-lg-3 row-cols-sm-2">
+			{% for product in pagination %}
+				<div class="col mb-4">
+					<div class="card">
+						<a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-light">
+							<img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid product-img" alt="...">
+							<div class="card-body">
+								<h6 class="card-title">{{ product.name }}</h6>
+								<p>{{ (product.price / 100)|number_format(2,',','.') }}
+									€</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 
-    <div class="d-flex justify-content-center">
-        {% include "includes/_pagination.html.twig" %}
-    </div>
-</div>
-		{% endif %}
+		<div class="d-flex justify-content-center mt-5">
+			{% include "includes/_pagination.html.twig" %}
+		</div>
+	</div>
 
-{% endblock %}
+
+{% else %}
+	<div class="container pt-5">
+		<h1 class="text-center pt-5">Mes Produits</h1>
+		<div class="row row-cols-1 row-cols-md-3">
+			{% for product in pagination %}
+				<div class="col mb-4">
+					<div class="card">
+						<a href="{{ path('produit_details', { 'id': product.id }) }}" class="btn btn-light">
+							<img src="{{ asset('upload/images/products/' ~ product.image) }}" class="card-img-top img-fluid product-img" alt="...">
+							<div class="card-body">
+								<h6 class="card-title">{{ product.name }}</h6>
+								
+							</div>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="d-flex justify-content-center mt-5">
+			{% include "includes/_pagination.html.twig" %}
+		</div>
+	</div>
+{% endif %}{% endblock %}

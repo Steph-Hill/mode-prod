@@ -1,23 +1,19 @@
 @import "custom.scss";
 
-.nav-pills .nav-item:hover .nav-link {
-    
-    background-color: $primary;
-    color: #dcfc3b;
-  }
 
 
 
 
-/* Espacement dans le body  */
-$body-padding: 140px;
+
+/* Espacement de la nav dans le body  */
+$body-padding: 10px;
 
 
 body {
   padding-top: $body-padding;
   font-family: 'Playfair Display', serif;
   font-size: $body-font-size;
-  background-color: #dcfc3b;
+  background-color: $primary;
   /* part footer 1 */
   min-height: 100vh;        
   display: flex;
@@ -41,6 +37,7 @@ margin-top: auto; /* part footer 1 */
 /* Navbar */
 
 @media (max-width:991px) {
+  
   .sidebar{
 
     background-color: rgba(37, 188, 107, 0.15);
@@ -60,7 +57,6 @@ body.home-content-touch .custom-navbar {
 
 /* Lorsque la zone de l'accueil touche la navbar */
 .home-content-touch .custom-navbar {
-  background-color: $primary
-   /* Changez la couleur de fond de la navbar */
-  /* Autres styles que vous souhaitez appliquer lorsque la zone de l'accueil touche la navbar */
+  background-color: $primary;
+  padding: $body-padding;
 }

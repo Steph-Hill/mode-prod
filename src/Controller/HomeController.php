@@ -17,4 +17,10 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/mentions-legales', name:'mentions')]
+    public function mentions(): Response
+    {
+        return $this->render('rgpd/mentions.html.twig');
+    }
 }

@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
@@ -28,6 +29,7 @@ class HairSalonType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control mb-6'
+                    
                 ]
             ])
             ->add('postalAdress', TextType::class, [
@@ -61,7 +63,7 @@ class HairSalonType extends AbstractType
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
                 ],
                 'attr' => [
-                    'class' => 'form-control mb-6'
+                    'class' => 'form-control mb-6 '
                 ]
             ])
             ->add('chair', IntegerType::class,[
@@ -77,14 +79,14 @@ class HairSalonType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-primary btn-block mt-4'
+                    'class' => 'btn btn-secondary btn-block mt-4'
                 ]
             ]);
             if (isset($options['salon']) && $options['salon'] instanceof HairSalon) {
                 $builder->add('modifier', ButtonType::class, [
                     'label' => 'Modifier',
                     'attr' => [
-                        'class' => 'btn btn-primary',
+                        'class' => 'btn btn-secondary',
                         'data-toggle' => 'modal', // Si vous souhaitez utiliser un modal pour la modification
                         'data-target' => '#modifierSalonModal', // ID du modal de modification
                     ],

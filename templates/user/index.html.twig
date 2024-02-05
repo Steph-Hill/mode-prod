@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container space-top">
 		<h1 class="mt-4 text-center">Profil
 		</h1>
 
@@ -54,11 +54,11 @@
 
 		<div class="d-flex align-items-center justify-content-center ">
 
-			<div class="flex-column mt-4 p-4 w-50 ">
+			<div class="flex-column mt-4 p-4 w-50">
 				<div>
-					<h2>
+					<h2 class="">
 						Mot de Passe :
-						{% for _ in range(15, professional.password|length) %}¤
+						{% for _ in range(50, professional.password|length) %}*
 						{% endfor %}
 					</h2>
 				</div>

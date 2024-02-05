@@ -1,4 +1,7 @@
-$primary : #3aef9e;
+
+$primary:#00796B;
+
+$secondary:#FFC107;
 
 
 @font-face {
@@ -10,16 +13,16 @@ $primary : #3aef9e;
   }
 
 // Variables de taille de police
-$title-font-size: 24px;
-$sub-title-font-size: 18px;
-$body-font-size: 16px;
+$title-font-size:36px;
+$sub-title-font-size: 24px;
+$body-font-size: 18px;
 $link-font-size: 14px;
 $small-font-size: 12px;
 
 // Utilisation des variables de taille de police et de la police "Playfair Display"
 
 
-h1, h2, h3, h4, h5, h6 {
+.title-main {
   font-family: 'Playfair Display', serif;
   font-size: $title-font-size;
 }
@@ -37,4 +40,13 @@ a {
 .small-text {
   font-family: 'Playfair Display', serif;
   font-size: $small-font-size;
+}
+
+.space-top{
+
+  padding-top: 200px;
+}
+
+.news-letter{
+  height: 200px;
 }

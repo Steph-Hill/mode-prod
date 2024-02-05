@@ -27,14 +27,16 @@
 		.clear {
 			clear: both;
 		}
+
+		
 	</style>
 
-	<div class="container">
+	<div class="container space-top">
 		<div
 			class="row">
 			<!-- Colonne du formulaire -->
-			<div class="col-md-4 left-column">
-				<h1 class="text-center my-3">Ajouter un salon de coiffure oki</h1>
+			<div class="col-md-4 left-column col-sm-6 text-light">
+				<h1 class="text-center my-3">Ajouter un salon de coiffure</h1>
 				<form method="POST" action="{{ path('app_hair_salon') }}">
 					{{ form_start(form) }}
 					{{ form_widget(form) }}
@@ -43,42 +45,40 @@
 			</div>
 
 			<!-- Colonne du contenu principal -->
-			<div
-				class="col-md-8 right-column">
+			<div class="col-md-8 right-column col-sm-6 ">
 				<!-- Contenu principal de votre page -->
-				<h1 class="text-center ">Liste des salons</h1>
-				<div class="scrollable-div" style="height: 380px; overflow-x: hidden; ">
+				<h1 class="text-center pb-3 text-light">Liste des salons</h1>
 
-				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-6 justify-content-center  ">
-					{% for salon in pagination %}
-						<div class="col mb-4">
-							<div class="card p-3">
-								<h4 class="card-title text-bg-primary text-xxl-center">{{ salon.name }}</h4>
-								<p class="card-text">Code Postal:
-									{{ salon.postalAdress }}</p>
-								<p class="card-text">Tel:
-									{{ salon.phone }}</p>
-								<p class="card-text">Nombre employé:
-									{{ salon.employe }}</p>
-								<p class="card-text">Nombre de place:
-									{{ salon.chair }}</p>
+				<div class="scrollable-div bg-secondary rounded-3" style="  height: 450px; overflow-x: hidden; ">
+
+					<div class="row row-cols-3 row-cols-md-1 row-cols-lg-2 p-6 justify-content-center  ">
+						{% for salon in pagination %}
+							<div class="col mb-4">
+								<div class="card p-3">
+									<h4 class="card-title text-bg-primary text-xxl-center">{{ salon.name }}</h4>
+									<p class="card-text">Code Postal:
+										{{ salon.postalAdress }}</p>
+									<p class="card-text">Tel:
+										{{ salon.phone }}</p>
+									<p class="card-text">Nombre employé:
+										{{ salon.employe }}</p>
+									<p class="card-text">Nombre de place:
+										{{ salon.chair }}</p>
 									<div class="d-flex gap-2 justify-content-center">
-								<a href="{{ path('app_hair_salon_edit', {'id': salon.id}) }}" class="btn btn-primary">Modifier</a>
-						<a href="{{ path('app_hair_salon_delete', {'id': salon.id}) }}" class="btn btn-danger">Supprimer</a>
-							</div>
-							</div>
-							
-					
+										<a href="{{ path('app_hair_salon_edit', {'id': salon.id}) }}" class="btn btn-primary">Modifier</a>
+										<a href="{{ path('app_hair_salon_delete', {'id': salon.id}) }}" class="btn btn-danger">Supprimer</a>
+									</div>
+								</div>
 
-						</div>
-					{% endfor %}
-				</div>
+
+							</div>
+						{% endfor %}
+					</div>
 
 				</div>
 				{# Pagination #}
 
-				 <div class="d-flex justify-content-center
-										 pagination-container">
+				<div class="d-flex justify-content-center pagination-container">
 					<nav aria-label="...">
 						<ul class="pagination">
 							{% if pagination.currentPageNumber > 1 %}
@@ -115,10 +115,11 @@
 						</ul>
 					</nav>
 				</div>
-			</div> 
+
+			</div>
 
 		</div>
 		<div class="clear"></div>
 	</div>
-	
+
 {% endblock %}

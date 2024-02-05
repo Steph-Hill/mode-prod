@@ -1,0 +1,180 @@
+/* ************************************
+        Sections Presentation
+**************************************** */
+
+.presentation-titre h1{
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-presentation{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1100px;
+}
+
+.text-presentation span{
+    text-align: center;
+    font-size: 30px;
+}
+/* ************************************
+        Sections nos Produits
+**************************************** */
+
+.produits-titre-home h1{
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* ************************************
+        Sections produit naturels
+**************************************** */
+
+section .produits-nat{
+
+    height: 600px;
+}
+
+
+.produits-nature-content {
+    position: relative;
+  }
+
+.produits-nature-titre h1{
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-produits-nature{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 800px;
+    padding-top: 40px;
+    padding-bottom: 210px;
+    margin-bottom: 100px;
+    
+}
+
+.text-produits-nature span{
+    text-align: center;
+    font-size: 30px;
+}
+
+.img-nature {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 750px;
+  height: 260px;
+  
+}
+
+.img-nature .card {
+    margin-top: 50px;
+     /* Ajustez selon votre besoin */
+
+  }
+/* ************************************
+        Sections trouver salon
+**************************************** */
+
+.salon-titre h1{
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-salon{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1100px;
+}
+
+.text-salon span{
+    text-align: center;
+    font-size: 30px;
+}
+
+.img-localisation{
+    width: auto;
+}
+/* ************************************
+        Sections professional home
+
+**************************************** */
+
+.professional-titre h1{
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+ 
+.text-professional{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1100px;
+}
+
+.text-professional span{
+    text-align: center;
+    font-size: 30px;
+}
+
+/* ************************************
+        Sections bienvenu
+**************************************** */
+
+.bienvenu-home-titre h1{
+    font-size:70px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+}
+
+.text-bienvenu-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+}
+
+.text-bienvenu-home span{
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.bouton-inscription {
+    width: 500px;
+}
