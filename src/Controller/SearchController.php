@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
 {
+    // Route pour afficher la page de recherche de salons de coiffure
     #[Route('/search', name: 'search')]
     public function index(
         HairSalonRepository $hairSalonRepository,
@@ -46,5 +47,4 @@ class SearchController extends AbstractController
             'hairSalon' => $hairSalonRepository->findByCodePostal($request->query->getInt('page', 1))
         ]);
     }
-
 }

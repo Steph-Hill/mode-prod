@@ -25,25 +25,48 @@ class DashboardController extends AbstractDashboardController
     {
         try {
             $this->denyAccessUnlessGranted("ROLE_ADMIN");
-    
+
             // Pour les utilisateurs avec le rôle ROLE_ADMIN
             // Redirection vers la page de liste des produits (ProductCrudController)
             $url = $this->adminUrlGenerator
                 ->setController(ProductCrudController::class)
                 ->generateUrl();
-    
+
             return $this->redirect($url);
         } catch (AccessDeniedException $exception) {
             $this->addFlash('danger', "Cette partie du site est réservée.");
-    
-            if ($this->isGranted("ROLE_PROFESSIONAL")) {
+
+            return $this->redirectToRoute('home');
+
+        }    
+         
+         // Vérifie si l'utilisateur a le rôle ROLE_PROFESSIONAL_SALON
+            if ($this->isGranted("ROLE_PROFESSIONAL_SALON")) {
+
+                // Redirection vers la page d'accueil des professionnels du salon
+                $this->addFlash('info', 'Vous êtes redirigé vers la page d\'accueil des professionnels du salon.');
+
                 return $this->redirectToRoute('home');
+
+            } elseif ($this->isGranted("ROLE_PROFESSIONAL")) {
+
+                
+                // Redirection vers la page d'accueil des professionnels du salon
+                $this->addFlash('info', 'Vous êtes redirigé vers la page d\'accueil des professionnels du salon.');
+
+                // Redirection vers la page d'accueil des professionnels
+                return $this->redirectToRoute('home');
+
             } else {
+
+                $this->addFlash('danger', "Cette partie du site est réservée.");
+
+                // Redirection vers la page de connexion
                 return $this->redirectToRoute('app_login');
             }
-        }
        
     }
+
 
     // Configuration générale du tableau de bord
     public function configureDashboard(): Dashboard

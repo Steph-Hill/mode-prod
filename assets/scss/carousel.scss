@@ -8,7 +8,6 @@
 .c-img{
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.6);
   border-radius: 5px;
 }
 
@@ -26,7 +25,6 @@
 .carousel-produit1-img{
   height: 50%;
   object-fit: cover;
-  filter: brightness(0.6);
   border-radius: 5px;
 
 }
@@ -45,7 +43,6 @@
 .carousel-produit2-img{
   height: 50%;
   object-fit: cover;
-  filter: brightness(0.6);
   border-radius: 5px;
 
 }
@@ -82,10 +79,12 @@ professionals avant apres
 .carousel-blond-img{
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.6);
   border-radius: 5px;
+  transform: scale(0.8);
 
 }
+
+
 
 
 

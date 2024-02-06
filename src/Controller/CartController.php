@@ -18,12 +18,15 @@ class CartController extends AbstractController
     {
          // Vérifie si l'utilisateur a l'un des rôles spécifiés ("ROLE_PROFESSIONAL" ou "ROLE_PROFESSIONAL_SALON")
     if (!$this->isGranted("ROLE_PROFESSIONAL") && !$this->isGranted("ROLE_PROFESSIONAL_SALON")) {
+        /* message flash pour informer de se connecter pour accéder au panier */
         $this->addFlash('danger', "Cette partie du site est réservée veuillez vous connecter");
+        /* redirige vers la page connexion */
         return $this->redirectToRoute('app_login');
     }
 
     // Rend la vue 'cart/index.html.twig' en passant le contenu du panier
     return $this->render('cart/index.html.twig', [
+        /* variable pour lire le contenu du panier */
        'cart' => $cartService->getTotal()
     ]);
     }
@@ -54,7 +57,8 @@ class CartController extends AbstractController
     #[Route('/mon-panier/decrease/{id<\d+>}', name: 'cart_decrease')]
     public function decrease(CartService $cartService, $id): RedirectResponse
     {
-        // Appelle la méthode decrease du service CartService pour diminuer la quantité du produit dans le panier
+        // Appelle la méthode decrease du service CartService 
+        // pour diminuer la quantité du produit dans le panier
         $cartService->decrease($id);
 
         // Redirige vers la route 'cart_index' pour afficher le contenu du panier

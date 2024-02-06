@@ -14,41 +14,46 @@ class ChangePasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'options' => [
-                    'attr' => [
-                        'autocomplete' => 'new-password',
-                    ],
+        // Ajout du champ plainPassword en utilisant RepeatedType pour saisir le mot de passe deux fois
+        $builder->add('plainPassword', RepeatedType::class, [
+            // Type de champ pour la saisie du mot de passe
+            'type' => PasswordType::class,
+            'options' => [
+                // Options supplémentaires pour le champ
+                'attr' => [
+                    // Empêche le navigateur de suggérer des mots de passe existants
+                    'autocomplete' => 'new-password',
                 ],
-                'first_options' => [
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
-                    ],
-                    'label' => 'New password',
+            ],
+            'first_options' => [
+                // Options pour le premier champ de saisie du mot de passe
+                'constraints' => [
+                    // Contraintes de validation pour assurer que le champ n'est pas vide et a une longueur minimale
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        // Longueur minimale du mot de passe
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        // Longueur maximale du mot de passe pour des raisons de sécurité
+                        'max' => 4096,
+                    ]),
                 ],
-                'second_options' => [
-                    'label' => 'Repeat Password',
-                ],
-                'invalid_message' => 'The password fields must match.',
-                // Instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-            ])
-        ;
+                'label' => 'New password', // Libellé du premier champ
+            ],
+            'second_options' => [
+                // Options pour le deuxième champ de saisie du mot de passe
+                'label' => 'Repeat Password', // Libellé du deuxième champ
+            ],
+            'invalid_message' => 'The password fields must match.', // Message d'erreur si les mots de passe ne correspondent pas
+            'mapped' => false, // Champ non associé à une propriété d'entité directement
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+        // Aucune option par défaut configurée
         $resolver->setDefaults([]);
     }
 }

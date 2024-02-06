@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace App\Controller;
- 
+
 use DateTime;
 use App\Entity\Order;
 use DateTimeImmutable;
@@ -13,16 +13,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
- 
+
 class OrderController extends AbstractController
 {
     private EntityManagerInterface $em;
- 
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
- 
+
     // Route pour afficher le formulaire de création de commande
     #[Route('/order/create', name: 'order_now')]
     public function index(CartService $cartService): Response
@@ -31,18 +31,18 @@ class OrderController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
- 
+
         // Crée le formulaire de commande avec l'utilisateur connecté
         $form = $this->createForm(OrderType::class, null, [
             'user' => $this->getUser()
         ]);
- 
+
         return $this->render('order/index.html.twig', [
             'form' => $form->createView(),
             'recapCart' => $cartService->getTotal()
         ]);
     }
- 
+
     // Route pour préparer la commande
     #[Route('/order/verify', name: 'order_prepare', methods: ['POST'])]
     public function prepareOrder(Request $request, CartService $cartService): Response
@@ -51,23 +51,23 @@ class OrderController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
- 
+
         // Crée le formulaire de commande avec l'utilisateur connecté
         $form = $this->createForm(OrderType::class, null, [
             'user' => $this->getUser()
         ]);
- 
+
         // Gère la soumission du formulaire
         $form->handleRequest($request);
- 
+
         // Vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $datetime = new DateTimeImmutable('now');
- 
+
             // Récupère les données du transporteur et de la livraison
             $transporter = $form->get('transporter')->getData();
             $delivery = $form->get('addresses')->getData();
- 
+
             // Formatte les informations de livraison pour la commande
             $deliveryForOrder = $delivery->getFirstName() . ' ' . $delivery->getLastName();
             $deliveryForOrder .= '<br>' . $delivery->getPhone();
@@ -77,7 +77,7 @@ class OrderController extends AbstractController
             $deliveryForOrder .= '<br>' . $delivery->getAddress();
             $deliveryForOrder .= '<br>' . $delivery->getPostalCode() . '-' . $delivery->getCity();
             $deliveryForOrder .= '<br>' . $delivery->getCountry();
- 
+
             // Crée une nouvelle entité Order et définit ses propriétés
             $order = new Order();
             $reference = $datetime->format('Ymd') . '-' . uniqid();
@@ -89,26 +89,32 @@ class OrderController extends AbstractController
             $order->setTransporteurPrice($transporter->getPrice());
             $order->setIsPaid(0);
             $order->setMethod('stripe');
- 
+
             // Persiste l'entité Order dans l'EntityManager
             $this->em->persist($order);
- 
+
             // Parcours les éléments du panier et crée une entité RecapDetail pour chaque produit
             foreach ($cartService->getTotal() as $product) {
-                $recapDetails = new RecapDetail();
-                $recapDetails->setOrderProduct($order);
-                $recapDetails->setQuantity($product['quantity']);
-                $recapDetails->setPrice($product['product']->getPrice());
-                $recapDetails->setProduct($product['product']->getName());
+                // Pour chaque élément du panier, crée une nouvelle instance de l'entité RecapDetail
+                $recapDetails = new RecapDetail();        
+                // Associe cette instance de RecapDetail à l'entité Order créée précédemment
+                $recapDetails->setOrderProduct($order);            
+                // Définit la quantité du produit dans l'instance de RecapDetail
+                $recapDetails->setQuantity($product['quantity']);            
+                // Définit le prix du produit dans l'instance de RecapDetail
+                $recapDetails->setPrice($product['product']->getPrice());            
+                // Définit le nom du produit dans l'instance de RecapDetail
+                $recapDetails->setProduct($product['product']->getName());            
+                // Calcule et définit le total pour ce produit dans l'instance de RecapDetail
                 $recapDetails->setTotalRecap($product['product']->getPrice() * $product['quantity']);
- 
                 // Persiste l'entité RecapDetail dans l'EntityManager
                 $this->em->persist($recapDetails);
             }
- 
+            
+
             // Enregistre les entités persistées dans la base de données
             $this->em->flush();
- 
+
             // Renvoie vers la page de récapitulatif de commande
             return $this->render('order/recap.html.twig', [
                 'method' => $order->getMethod(),
@@ -118,7 +124,7 @@ class OrderController extends AbstractController
                 'reference' => $order->getReference()
             ]);
         }
- 
+
         // Redirige vers la page du panier si le formulaire n'est pas soumis ou n'est pas valide
         return $this->redirectToRoute('cart_index');
     }

@@ -155,14 +155,7 @@ class ResetPasswordController extends AbstractController
             // Génère un jeton de réinitialisation de mot de passe
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
         } catch (ResetPasswordExceptionInterface $e) {
-            // En cas d'erreur, vous pouvez décommenter les lignes ci-dessous pour afficher un message d'erreur
-            // Cela peut révéler si un utilisateur est enregistré ou non, donc soyez prudent
-            //
-            // $this->addFlash('reset_password_error', sprintf(
-            //     '%s - %s',
-            //     $translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE, [], 'ResetPasswordBundle'),
-            //     $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
-            // ));
+            
 
             return $this->redirectToRoute('app_check_email');
         }

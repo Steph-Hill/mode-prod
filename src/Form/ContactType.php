@@ -20,17 +20,19 @@ class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-       
-        // Ajoute les différents champs du formulaire
+        // Ajout des champs du formulaire avec leurs contraintes de validation
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Votre nom/prénom',
                 'constraints' => [
+                    // Longueur minimale et maximale du nom/prénom
                     new Length([
                         'min' => 5,
                         'max' => 180
                     ]),
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Type de valeur attendue (chaîne de caractères)
                     new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.'])
                 ],
                 'attr' => [
@@ -40,8 +42,11 @@ class ContactType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Votre email',
                 'constraints' => [
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Type de valeur attendue (chaîne de caractères)
                     new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.']),
+                    // Validation de format d'email
                     new Email()
                 ],
                 'attr' => [
@@ -51,7 +56,9 @@ class ContactType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'constraints' => [
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Type de valeur attendue (chaîne de caractères)
                     new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.'])
                 ],
                 'attr' => [
@@ -61,7 +68,9 @@ class ContactType extends AbstractType
             ->add('postalAddress', TextType::class, [
                 'label' => 'Adresse postale',
                 'constraints' => [
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Longueur minimale et maximale de l'adresse postale
                     new Length([
                         'min' => 10,
                         'max' => 250,
@@ -76,7 +85,9 @@ class ContactType extends AbstractType
             ->add('codePostal', TextType::class, [
                 'label' => 'Code postal',
                 'constraints' => [
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Type de valeur attendue (chaîne de caractères)
                     new Type(['type' => 'string', 'message' => 'Ce champ doit être une chaîne de caractères.'])
                 ],
                 'attr' => [
@@ -86,7 +97,9 @@ class ContactType extends AbstractType
             ->add('objet', TextType::class, [
                 'label' => 'Objet',
                 'constraints' => [
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Longueur minimale et maximale de l'objet
                     new Length([
                         'min' => 10,
                         'max' => 150,
@@ -104,7 +117,9 @@ class ContactType extends AbstractType
                     'rows' => 5
                 ],
                 'constraints' => [
+                    // Champ requis
                     new NotBlank(['message' => 'Ce champ ne peut pas être vide.']),
+                    // Longueur minimale et maximale du message
                     new Length([
                         'min' => 10,
                         'max' => 150,

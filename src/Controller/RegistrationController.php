@@ -14,24 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-
 class RegistrationController extends AbstractController
 {
+    // Route pour afficher le formulaire d'inscription
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, 
-                            UserPasswordHasherInterface $userPasswordHasher, 
-                            UserAuthenticatorInterface $userAuthenticator, 
-                            AppAuthenticator $authenticator, 
-                            EntityManagerInterface $entityManager): Response
-    {
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserAuthenticatorInterface $userAuthenticator,
+        AppAuthenticator $authenticator,
+        EntityManagerInterface $entityManager
+    ): Response {
         // Création d'une nouvelle instance de la classe Professional pour représenter l'utilisateur enregistré
         $user = new Professional();
-        
+
         // Création du formulaire d'enregistrement en utilisant la classe RegistrationFormType et l'entité Professional
         $form = $this->createForm(RegistrationFormType::class, $user);
-        
+
         // Traitement du formulaire lorsqu'il est soumis
         $form->handleRequest($request);
+
         // Vérification si le formulaire a été soumis et s'il est valide
         if ($form->isSubmitted() && $form->isValid()) {
             // Encodage du mot de passe en utilisant l'interface UserPasswordHasherInterface
@@ -44,18 +46,18 @@ class RegistrationController extends AbstractController
 
             // L'événement de soumission du formulaire déclenche la mise à jour du rôle
             $this->onPreSubmit($user);
-            
+
             // Persistance de l'entité Professional dans la base de données
             $entityManager->persist($user);
             $entityManager->flush();
-            
-            // Ajouter le message flash "Veuillez vous connecter" après l'enregistrement réussi
-            $this->addFlash('success', ' Bienvenue !.');
+
+            // Ajouter le message flash "Bienvenue !" après l'enregistrement réussi
+            $this->addFlash('success', 'Bienvenue !');
 
             // Redirection vers la page de connexion
             return $this->redirectToRoute('app_login');
 
-            // Authentification de l'utilisateur nouvellement enregistrement
+            // Authentification de l'utilisateur nouvellement enregistré (cette partie semble inatteignable en raison du 'return' précédent)
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
@@ -69,6 +71,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+    // Fonction privée pour mettre à jour le rôle en fonction de la valeur de hairSalon
     private function onPreSubmit(Professional $user): void
     {
         // Récupérer la valeur de hairSalon

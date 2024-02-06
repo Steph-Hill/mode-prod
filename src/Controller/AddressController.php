@@ -8,14 +8,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\AddressType; // Importez le formulaire AddressType
+use App\Form\AddressType; 
 
 class AddressController extends AbstractController
 {
     #[Route('/address', name: 'app_address', methods: ['GET', 'POST'])]
     public function createAddress(Request $request, EntityManagerInterface $em): Response
     {
+        /* Verifie si l'utilisateur est connecté */
         if (!$this->getUser()) {
+            /* redirige vers la page de connexion */
             return $this->redirectToRoute('app_login');
         }
         
@@ -30,11 +32,14 @@ class AddressController extends AbstractController
 
         // Traite la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
+
             // Définit la relation entre Address et Professional (utilisateur connecté)
+            //Cette adresse appartient a l'utilisateur
             $address->setProfessional($this->getUser());
 
             // Persiste les données du formulaire dans la base de données
             $em->persist($address);
+            //lance la requete sql par Doctrine pour enregistrer
             $em->flush();
 
             // Ajoute un message flash pour indiquer que l'adresse a été ajoutée avec succès
@@ -44,12 +49,12 @@ class AddressController extends AbstractController
             );
 
 
-            // Redirige vers la route 'order' ou une autre route appropriée
-            return $this->redirectToRoute('order_now'); // Assurez-vous que la route est correcte
+            // Redirige vers la route 'order_now'
+            return $this->redirectToRoute('order_now'); 
         }
 
         return $this->render('address/index.html.twig', [
-            'controller_name' => 'AddressController',
+            /* variable pour créer un formulaire */
             'form' => $form->createView()
         ]);
     }

@@ -24,6 +24,7 @@ class ProduitController extends AbstractController
         // Récupère tous les produits
         $products = $productRepository->findAll();
 
+        //variable de la pagination 
         $pagination = $paginator->paginate(
             $products,
             $request->query->getInt('page', 1), // Numéro de page par défaut

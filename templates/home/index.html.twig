@@ -18,4 +18,13 @@
   
   {% include "includes/sections/bienvenu.html.twig" %}
 
+  {# Affichage du message flash #}
+  {% for type, messages in app.flashes() %}
+    {% for message in messages %}
+      <div class="alert alert-{{ type }}" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endfor %}
+
 {% endblock %}

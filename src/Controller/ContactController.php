@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
     // Route pour afficher le formulaire de contact
-    
     #[Route('/contact', name: 'app_contact')]
     public function index(Request $request, 
                         EntityManagerInterface $em,
@@ -43,12 +42,12 @@ class ContactController extends AbstractController
             
           // Crée une instance de l'e-mail à envoyer
             $email = (new TemplatedEmail())
-            ->from($address)
-            ->to('contact@toplissage.com')
-            ->subject($objet)
-            ->htmlTemplate('contact/mail.html.twig')
-            ->context([
-                'messageContent' => $content,
+            ->from($address) /* adresse de l'utilisateur(expediteur) */
+            ->to('contact@toplissage.com')/* adresse du destinataire */
+            ->subject($objet) /* objet du mail */
+            ->htmlTemplate('contact/mail.html.twig') /* page du contenu du mail */
+            ->context([ /* contenu du mail envoyer par l'utilisateur */
+                'messageContent' => $content, 
                 'senderEmail' => $address,
                 'messageSubject' => $objet
             ]);
@@ -56,7 +55,8 @@ class ContactController extends AbstractController
             $mailer->send($email);
 
             // Persiste les données du formulaire dans la base de données
-            $em->persist($data);
+            $em->persist($address);
+            //lance la requete sql par Doctrine pour enregistrer
             $em->flush();
 
             // Ajoute un message flash pour indiquer que le message a été envoyé avec succès
@@ -71,6 +71,7 @@ class ContactController extends AbstractController
 
         // Rend la vue 'contact/index.html.twig' en passant le formulaire
         return $this->render('contact/index.html.twig', [
+            /* pour créer le formulair */
             'form' => $form->createView(),
         ]);
     }

@@ -25,6 +25,8 @@
 						<a href="{{ path('app_logout') }}">Se déconnecter</a>
 					</div>
 				{% else %}
+
+				{% include 'includes/_flashes.html.twig' %}
 					{# Formulaire de connexion #}
 					<form name="login" method="post" action="{{ path('app_login') }}">
 						<h1 class="text-primary text-center p-3">Connexion</h1>

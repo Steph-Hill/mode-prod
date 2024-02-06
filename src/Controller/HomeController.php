@@ -13,14 +13,17 @@ class HomeController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
+        // Rendu de la vue de la page d'accueil
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/mentions-legales', name:'mentions')]
+    // Route pour la page des mentions légales (route '/mentions-legales')
+    #[Route('/mentions-legales', name: 'mentions')]
     public function mentions(): Response
     {
+        // Rendu de la vue pour la page des mentions légales
         return $this->render('rgpd/mentions.html.twig');
     }
 }
