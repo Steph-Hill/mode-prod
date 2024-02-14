@@ -2,6 +2,7 @@
   "assets/app.css": "/assets/app.css",
   "assets/app.js": "/assets/app.js",
   "assets/runtime.js": "/assets/runtime.js",
+  "assets/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-d03e02.js": "/assets/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-d03e02.js",
   "assets/fonts/PlayfairDisplay-Bold.woff": "/assets/fonts/PlayfairDisplay-Bold.cec93b01.woff",
   "assets/fonts/PlayfairDisplay-Bold.woff2": "/assets/fonts/PlayfairDisplay-Bold.24ab0f8b.woff2"
 }

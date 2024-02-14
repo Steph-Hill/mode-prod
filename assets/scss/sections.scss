@@ -29,25 +29,23 @@
 
 .produits-titre-home h1{
     font-size: 70px;
-    display: flex;
-    justify-content: center;
+    
 }
 
 
 /* ************************************
         Sections produit naturels
 **************************************** */
-
-section .produits-nat{
-
-    height: 600px;
+.produits-nat{
+    height: 600px
 }
 
 
-.produits-nature-content {
-    position: relative;
+/* .produits-nature-content {
+    
+    width: auto;
   }
-
+ */
 .produits-nature-titre h1{
     font-size: 70px;
     display: flex;
@@ -55,6 +53,7 @@ section .produits-nat{
 }
 
 .text-produits-nature{
+
     display: flex;
     justify-content: center;
     background-color: white;
@@ -62,10 +61,10 @@ section .produits-nat{
     padding: 50px;
     margin-right: auto;
     margin-left: auto;
-    width: 800px;
     padding-top: 40px;
-    padding-bottom: 210px;
-    margin-bottom: 100px;
+    padding-bottom: 80px;
+    margin-bottom: 20px;
+    
     
 }
 
@@ -74,21 +73,9 @@ section .produits-nat{
     font-size: 30px;
 }
 
-.img-nature {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 750px;
-  height: 260px;
-  
-}
 
-.img-nature .card {
-    margin-top: 50px;
-     /* Ajustez selon votre besoin */
 
-  }
+
 /* ************************************
         Sections trouver salon
 **************************************** */
@@ -97,6 +84,7 @@ section .produits-nat{
     font-size: 70px;
     display: flex;
     justify-content: center;
+    padding-top: 120px;
 }
 
 .text-salon{

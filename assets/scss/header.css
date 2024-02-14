@@ -8,6 +8,7 @@
 body {
   font-family: "Playfair Display", serif;
   font-size: 16px;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,10 +36,8 @@ a {
   color: #dcfc3b;
 }
 
-/* Espacement dans le body  */
-body {
-  padding-top: 140px;
-}
+
+
 
 /* Navbar */
 @media (max-width: 991px) {

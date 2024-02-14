@@ -1,10 +1,11 @@
 
 /* carousel accueil */
 .c-item-home{
-    height: 700px;
+    height: 900px;
 
   }
 
+  
 .c-img{
   height: 100%;
   object-fit: cover;
@@ -17,85 +18,73 @@
 }
 
 /* carousel produits1 */
+#carousel-produits{
 
-.carousel-produit1{
+  width: 330px;
+
+}
+.carousel-produit{
   height: 900px;
+  
 }
 
-.carousel-produit1-img{
+.carousel-produit-img{
   height: 50%;
   object-fit: cover;
   border-radius: 5px;
 
 }
 
-#carousel-produits1{
 
-  width: 300px;
 
-}
 
-/* carousel2 */
-.carousel-produit2{
-  height: 900px;
-}
-
-.carousel-produit2-img{
-  height: 50%;
-  object-fit: cover;
-  border-radius: 5px;
-
-}
-
-#carousel-produits2{
-
-  width: 300px;
-
-}
 
 .bande-carousel{
-
+  
   background-color: $secondary;
   height: 500px;
   padding-top: 20px;
 }
 
-/* **********************
-professionals avant apres
-*********************/
+/* ***********************************
+professionals avant apres coiffures  *
+**************************************/
 
 /* carousel2 */
 
 #carousel-professional{
-
-  width: 500px;
-
+  
+  width: 100%;
+  
 }
 
 .blonds-carousel{
-  height: 500px;
+  height: 900px;
 }
 
 .carousel-blond-img{
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
+  height: 70%;
+  object-fit: fill;
+  border-radius: 10px;
   transform: scale(0.8);
-
+  
 }
 
-
-
-
-
+.bande-carousel-pro{
+  
+  background-color: $secondary;
+  height: 670px;
+  padding-top: 10px;
+  margin-top: 30px;
+}
 
 /* ********
 product style
 **********/
 
 .product-img{
-
+  
   height: 200px;
   object-fit: cover;
-
+  
 }

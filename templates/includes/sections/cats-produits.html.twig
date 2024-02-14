@@ -1,32 +1,51 @@
 <section class="present-produits" id="present-mesproduits">
 
-    <div class="produits-content-home">
+	<div class="produits-content-home">
 
-        <div class="produits-titre-home text-secondary text-center pt-5">
+		<div class="produits-titre-home text-secondary text-center p-5">
 
-            <h1>Nos Produits</h1>
+			<h1>Nos Produits</h1>
 
-        </div>
+		</div>
 
-        <div class="produits-cats-home pt-5">
-            <div class="d-flex justify-content-evenly pb-5">
-                <a class="btn btn-secondary" href="">Lissage Bresilien</a>
-                <a class="btn btn-secondary" href="">Produits coiffants</a>
-                <a class="btn btn-secondary" href="">Produits techniques</a>
-                <a class="btn btn-secondary" href="">Soins Capilaires</a>
-            </div>
-        </div>
+		<div class="d-flex justify-content-around pb-5">
 
-        <div class="d-flex justify-content-evenly bande-carousel ">
-          {% include "includes/carousels/_carousel-produits-present1.html.twig" %}
+			<div class=" col-xl-2 ">
+				<a class="btn btn-secondary col-xl-8 offset-xl-2 fs-4 	" href="">Lissage Bresilien</a>
+			</div>
 
-          {% include "includes/carousels/_carousel-produits-present2.html.twig" %}
-          {% include "includes/carousels/_carousel-produits-present1.html.twig" %}
-          {% include "includes/carousels/_carousel-produits-present2.html.twig" %}
-          
+			<div class="col-xl-2 ">
+				<a class="btn btn-secondary  col-xl-8 offset-xl-2 fs-4" href="">Produits coiffants</a>
+			</div>
 
-        </div>
+			<div class="col-xl-2 ">
+				<a class="btn btn-secondary col-xl-10 offset-xl-1 fs-4" href="">Produits techniques</a>
+			</div>
 
-    </div>
+			<div class="col-xl-2 ">
+				<a class="btn btn-secondary col-xl-8 offset-xl-2 fs-4" href="">Soins Capilaires</a>
+
+			</div>
+		</div>
+
+
+		<div class="d-flex justify-content-evenly bande-carousel ">
+
+			<div class="col-lg-3 d-lg-none d-xl-block d-none">
+				{% include "includes/carousels/_carousel-produits-present1.html.twig" %}
+			</div>
+			<div class="col-lg-3 d-md-none d-lg-block d-none ">
+				{% include "includes/carousels/_carousel-produits-present2.html.twig" %}
+			</div>
+			<div class="col-lg-3 col-md-6">
+				{% include "includes/carousels/_carousel-produits-present1.html.twig" %}
+			</div>
+			<div class="col-lg-3 col-md-6">
+				{% include "includes/carousels/_carousel-produits-present2.html.twig" %}
+			</div>
+
+		</div>
+
+	</div>
 
 </section>
